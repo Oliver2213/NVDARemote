@@ -64,19 +64,20 @@ class GlobalPlugin(GlobalPlugin):
 		self.sd_server = None
 		cs = get_config()['controlserver']
 		if cs['autoconnect']:
-			if cs['autoconnect'] == '1': # self-hosted server
+			if cs['autoconnect'] == 1: # self-hosted server
 				self.server = server.Server(SERVER_PORT, cs['key'])
 				server_thread = threading.Thread(target=self.server.run)
 				server_thread.daemon = True
 				server_thread.start()
 				address = address_to_hostport('localhost')
-			elif cs['autoconnect'] == 2:
+			elif cs['autoconnect'] == '2':
 				address = address_to_hostport(cs['host'])
 			elif cs['autoconnect'] == True: # Previous version config, change value to 2 for external control server
 				config = get_config()
 				config['controlserver']['autoconnect'] = 2
 				config.write()
-			self.connect_control(address, cs['key'])
+				address = address_to_hostport(cs['host'])
+			self.connect_control(address, cs['key']) # Connect to the server
 		self.temp_location = os.path.join(shlobj.SHGetFolderPath(0, shlobj.CSIDL_COMMON_APPDATA), 'temp')
 		self.ipc_file = os.path.join(self.temp_location, 'remote.ipc')
 		self.sd_focused = False
@@ -154,6 +155,8 @@ class GlobalPlugin(GlobalPlugin):
 		self.local_machine.is_muted = not self.local_machine.is_muted
 		self.mute_item.Check(self.local_machine.is_muted)
 	script_toggle_remote_mute.__doc__ = _("""Mute or unmute the speech coming from the remote computer""")
+
+
 
 	def on_push_clipboard_item(self, evt):
 		connector = self.control_connector or self.connector
@@ -289,6 +292,8 @@ class GlobalPlugin(GlobalPlugin):
 		self.connector = transport
 		self.connector_thread = ConnectorThread(connector=transport)
 		self.connector_thread.start()
+		self.serveraddress = address
+
 
 	def connect_control(self, address=SERVER_ADDR, key=None):
 		if self.control_connector_thread is not None:
@@ -303,6 +308,7 @@ class GlobalPlugin(GlobalPlugin):
 		self.control_connector.callback_manager.register_callback('transport_connected', self.connected_to_relay)
 		self.control_connector_thread = ConnectorThread(connector=self.control_connector)
 		self.control_connector_thread.start()
+		self.serveraddress = address
 		self.disconnect_item.Enable(True)
 		self.connect_item.Enable(False)
 
