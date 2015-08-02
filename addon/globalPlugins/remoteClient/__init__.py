@@ -65,9 +65,20 @@ class GlobalPlugin(GlobalPlugin):
 		cs = get_config()['controlserver']
 		if cs['autoconnect']:
 
-			address = address_to_hostport(cs['host'])
-			self.connect_control(address, cs['key'])
-
+			if cs['autoconnect'] == 1: # self-hosted server
+				self.server = server.Server(SERVER_PORT, cs['key'])
+				server_thread = threading.Thread(target=self.server.run)
+				server_thread.daemon = True
+				server_thread.start()
+				address = address_to_hostport('localhost')
+			elif cs['autoconnect'] == '2':
+				address = address_to_hostport(cs['host'])
+			elif cs['autoconnect'] == True: # Previous version config, change value to 2 for external control server
+				config = get_config()
+				config['controlserver']['autoconnect'] = 2
+				config.write()
+				address = address_to_hostport(cs['host'])
+			self.connect_control(address, cs['key']) # Connect to the server
 		self.temp_location = os.path.join(shlobj.SHGetFolderPath(0, shlobj.CSIDL_COMMON_APPDATA), 'temp')
 		self.ipc_file = os.path.join(self.temp_location, 'remote.ipc')
 		self.sd_focused = False
@@ -152,6 +163,7 @@ class GlobalPlugin(GlobalPlugin):
 	script_toggle_remote_mute.__doc__ = _("""Mute or unmute the speech coming from the remote computer""")
 
 
+
 	def script_connect(self, gesture):
 		if self.connector or self.control_connector : # a connection is already established
 			speech.speakMessage(_("You can't open that dialog, a connection is already established"))
@@ -180,7 +192,6 @@ class GlobalPlugin(GlobalPlugin):
 	script_status.__doc__= _("""Announce the status of NVDA remote, including connection state, if a local server is running, and if remote speech is muted""")
 
 
->>>>>>> status
 	def on_push_clipboard_item(self, evt):
 		connector = self.control_connector or self.connector
 		try:
@@ -314,7 +325,9 @@ class GlobalPlugin(GlobalPlugin):
 		self.connector = transport
 		self.connector_thread = ConnectorThread(connector=transport)
 		self.connector_thread.start()
-		self.serveraddress, self.serverport = address
+
+		self.serveraddress = address
+
 
 
 	def connect_control(self, address=SERVER_ADDR, key=None):
@@ -330,6 +343,7 @@ class GlobalPlugin(GlobalPlugin):
 		self.control_connector.callback_manager.register_callback('transport_connected', self.connected_to_relay)
 		self.control_connector_thread = ConnectorThread(connector=self.control_connector)
 		self.control_connector_thread.start()
+
 		self.serveraddress, self.serverport= address
 		self.disconnect_item.Enable(True)
 		self.connect_item.Enable(False)
