@@ -10,5 +10,6 @@ Well...
   * Report addon status (I still need to work on this, don't be surprised if things don't report correctly)
   * Push clipboard
 * ads a "automatic Self-hosted server" feature in the options dialog. This is useful for users who don't feel comfortable, (and rightly so), about leaving a connection open to a server that they probably don't control that could potentially be running malicious code to control their own computer. When this is enabled and configured, the computer running the addon will automatically start it's own server when NVDA (or the addon itself), starts. You will need to poke an NVDA remote-shaped hole (and by NVDA Remote-shaped, I mean TCP Port 6837), in your computer's firewall, as well as the firewall of any nat router (you only need to add a port forward in the router if you want to access this outside your local network). I'll probably be adding the ability to specify a custom port in the options dialog for auto self-hosted servers soon, so if your interested in that, keep an eye on this repository.  
-  
-That's all this version adds for now. If you have ideas, suggestions, bugs, feel free to email me or file an issue here on git hub.
+* Updates the [documentation](addon/doc/en/readme.md) with the new features added by this fork.
+
+That's all this version adds for now. If you have ideas, suggestions, bugs, feel free to email me or [file an issue](https://github.com/oliver2213/NVDARemote/issues) here on git hub.
