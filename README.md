@@ -1,6 +1,6 @@
 #Unofficial NVDARemote fork
 As stated above, this is my unofficial fork of [the original NVDA Remote addon ](https://github.com/NVDARemote/NVDARemote).  
-Previously, I hadn't added a readme so it would be easier for developers on the original project to merge my pull requests, but as it seems they either have no intention of doing so, or will, but just "haven't gotten around to it yet", I've decided there is no reason why I should make one.
+Previously, I hadn't added a readme so it would be easier for developers on the original project to merge my pull requests, but as it seems they either have no intention of doing so, or will, but just "haven't gotten around to it yet", I've decided there is no reason why I shouldn't make one.
 ##So what does this "unofficial" fork of the addon do that the original doesn't?
 Well...
 * Adds gestures / hotkeys that you can set up yourself in NVDA's gesture's manager for:
