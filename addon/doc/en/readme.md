@@ -78,6 +78,7 @@ There are 2 methods to do this:
 2. In the first radiobutton selection box, arrow down until you get to "Autoconnect to a self-hosted server ".
 3. Tab once, over to the "key" text field. Since this server will automatically be started when NVDA (or the add-on itself) starts, you can not choose to "randomly generate a key", as, when connecting from a remote computer, you would have no idea what said key was. Come up with a **unique** key that only you know and enter it here.
 4. Press Ok.  
+
 Now, when NVDA or the add-on starts up, it will automatically start a local NVDARemote server that you can connect to, just like a normal server, to control that computer. This has several advantages and disadvantages over the second method:
 * You don't need to leave your computer constantly connected to a remote server that you most likely don't control which could potentially remotely control your computer.
 * You don't have to worry about the relay server your using going down when you are away from the computer that you need to have remote access to - the server is hosted in the NVDA process itself.
