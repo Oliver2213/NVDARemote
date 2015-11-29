@@ -91,7 +91,7 @@ Now, when NVDA or the add-on starts up, it will automatically start a local NVDA
 3. Fill in the Host and Key fields, tab to OK, and press Enter.
 4. Please note: the Generate Key option is not available in this situation. It is best to come up with a key you will remember so you can easily use it from any remote location.
 
-While you won't need to open any ports through your router for this method to work, be aware that (essentially), you are leaving a connection open to a server that you most likely do not own or have any sort of control over. It would be relatively trivial for the operator of said server to see that your computer regularly connects to it, and to get the key it uses to do so, and hense gain complete control over your system. If this bothers you at all, don't worry. You can [run your own NVDA Remote server!](https://github.com/Technow-es/NVDARemoteServer).
+While you won't need to open any ports through your router for this method to work, be aware that (essentially), you are leaving a connection open to a server that you most likely do not own or have any sort of control over. It would be relatively trivial for the operator of said server to see that your computer regularly connects to it, and to get the key it uses to do so, and hense gain complete control over your system. If this bothers you at all, don't worry. You can [run your own NVDA Remote server!](https://github.com/Technow-es/NVDARemoteServer)
 
 ##Muting Speech on the Remote Computer
 If you do not wish to hear the remote computer's speech, simply access the NVDA menu, Tools, and Remote. Arrow down to Mute Remote Speech, and press Enter.
