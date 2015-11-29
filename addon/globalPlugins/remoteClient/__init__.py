@@ -171,7 +171,7 @@ class GlobalPlugin(GlobalPlugin):
 			self.do_connect('gesture')
 		else:
 			speech.speakMessage(_("Error, connection state can't be determined!"))
-	script_connect.__doc__ = _("""Open the NVDA Remote connect dialog if a connection isn't already established""")
+	script_connect.__doc__ = _("""Open the connect dialog if a connection isn't already established""")
 
 
 	def script_status(self, gesture):
@@ -196,9 +196,12 @@ class GlobalPlugin(GlobalPlugin):
 		connector = self.control_connector or self.connector
 		try:
 			connector.send(type='set_clipboard_text', text=api.getClipData())
-		except TypeError:
-			# JL: It might be helpful to provide a log.debug output for this.
-			pass
+		except TypeError as e:
+			log.debug("Error while pushing clipboard: %s" %(e))
+
+	def script_push_clipboard_item(self, gesture):
+		self.on_push_clipboard_item('gesture')
+	script_push_clipboard_item.__doc__=_("""Push your clipboard to the remote computer""")
 
 	def on_options_item(self, evt):
 		evt.Skip()
@@ -394,8 +397,12 @@ class GlobalPlugin(GlobalPlugin):
 		nextHandler()
 
 	def enter_secure_desktop(self):
-		"""function ran when entering a secure desktop."""
-		if self.control_connector is None:
+		"""function ran when entering a secure desktop.
+			So far as I can tell, this function does a few things:
+				* checks if any connections are active. If not, returns
+				* If a temp directory doesn't exist, makes one, starts a local relay with a random (4 character?) id and writes that info to a file. I assume that this is somehow connecting back to the client running in a non-secure environment
+		"""
+		if self.control_connector is None: # No connections are open
 			return
 		if not os.path.exists(self.temp_location):
 			os.makedirs(self.temp_location)
@@ -431,8 +438,6 @@ class GlobalPlugin(GlobalPlugin):
 		self.connect_control(('127.0.0.1', port), channel)
 
 	__gestures = {
-		"kb:alt+NVDA+shift+d": "disconnect",
-		"kb:NVDA+shift+c": "connect",
 	}
 
 

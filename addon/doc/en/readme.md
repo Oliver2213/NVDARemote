@@ -72,7 +72,7 @@ If you need to send CTRL+Alt+del, and the remote system is on the secure desktop
 Sometimes, you may wish to control one of your own computers remotely. This is especially helpful if you are traveling, and you wish to control your home PC from your laptop. Or, you may want to control a computer in one room of your house while sitting outside with another PC. A little advanced preparation makes this convenient and possible.  
 
 There are 2 methods to do this:
-###Using an automatic self-hosted server (this is a feature of this fork only!):
+###Method 1: Using an automatic self-hosted server (this is a feature of this fork only!):
 
 1. Navigate to the NVDA menu > Tools > Remote > options.
 2. In the first radiobutton selection box, arrow down until you get to "Autoconnect to a self-hosted server ".
