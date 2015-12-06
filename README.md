@@ -13,3 +13,6 @@ Well...
 * Updates the [documentation](addon/doc/en/readme.md) with the new features added by this fork.
 
 That's all this version adds for now. If you have ideas, suggestions, bugs, feel free to email me or [file an issue](https://github.com/oliver2213/NVDARemote/issues) here on git hub.
+#That's great, where can I get it?
+
+Each stable release is over on the [releases page](https://github.com/oliver2213/NVDARemote/releases). To see what I'm currently working on, just git clone and build with scons.
