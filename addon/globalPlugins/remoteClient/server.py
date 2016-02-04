@@ -81,7 +81,7 @@ class Client(object):
 
 	def handle_data(self):
 		try:
-			data = self.buffer + self.socket.recv(8192)
+			data = self.buffer + self.socket.recv(16384)
 		except:
 			self.close()
 			return
@@ -89,7 +89,7 @@ class Client(object):
 			self.close()
 			return
 		if '\n' not in data:
-			self.buffer += data
+			self.buffer = data
 			return
 		self.buffer = ""
 		while '\n' in data:
