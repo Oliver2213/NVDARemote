@@ -19,11 +19,11 @@ addon_info = {
 	# Translators: Long description to be shown for this add-on on add-on information from add-ons manager
 	"addon_description" : _("""Allows remote control of and remote access to another machine."""),
 	# version
-	"addon_version" : "1.3",
+	"addon_version" : "1.3.1",
 	# Author(s)
 	"addon_author" : u"Tyler Spivey <tspivey@pcdesk.net>, Christopher Toth <q@q-continuum.net>, Blake Oliver <oliver22213@me.com> (unofficial fork maintainer)",
 	# URL for the add-on documentation support
-	"addon_url" : "http://NVDARemote.com",
+	"addon_url" : "https://github.com/oliver2213/NVDARemote",
 	# Documentation file name
 	"addon_docFileName" : "readme.html",
 }

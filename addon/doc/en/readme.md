@@ -1,5 +1,5 @@
 #NVDA Remote Access
-Version 1.3, Unofficial fork by [Blake Oliver](https://github.com/oliver2213)
+Version 1.3.1, Unofficial fork by [Blake Oliver](https://github.com/oliver2213)
 ##Please Note
 This is an unofficial fork of the [NVDA Remote add-on](https://github.com/NVDARemote/NVDARemote). This probably doesn't mean much, the code is still open source and hosted on Git hub, [right here](https://github.com/oliver2213/NVDARemote).
 This does mean, however, that I don't have updated translations for the documentation that I change. If you can help with this, then feel free to email me at oliver22213@me.com, or clone the git repository linked above, update any translations you can, then [file a pull request](https://github.com/oliver2213/nvdaremote/pulls) and I'll gladly add your translation.  
